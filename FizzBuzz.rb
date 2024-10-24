@@ -34,3 +34,61 @@ elsif number % 7 == 0
 else
     puts "占いなんてつゆ知らず"
 end
+
+# 数値を英語に変換する関数
+def number_to_words(number)
+    # 英語の基本表現
+    ones = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
+            "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"]
+  
+    tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"]
+  
+    thousands = ["", "Thousand", "Million", "Billion", "Trillion"]
+  
+    return "Zero" if number == 0
+  
+    result = ""
+    thousand_count = 0
+  
+    while number > 0
+      # 3桁ごとに分割して変換
+      remainder = number % 1000
+      if remainder != 0
+        result = "#{convert_hundreds(remainder)} #{thousands[thousand_count]} #{result}".strip
+      end
+      number /= 1000
+      thousand_count += 1
+    end
+  
+    result
+  end
+  
+  # 3桁の数値を変換する補助関数
+  def convert_hundreds(number)
+    ones = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
+            "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"]
+  
+    tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"]
+  
+    result = ""
+  
+    # 100の位
+    if number >= 100
+      result += "#{ones[number / 100]} Hundred "
+      number %= 100
+    end
+  
+    # 20未満の数は特殊処理
+    if number < 20
+      result += ones[number]
+    else
+      result += "#{tens[number / 10]} #{ones[number % 10]}"
+    end
+  
+    result.strip
+  end
+  
+  # 使用例
+  amount = 200000
+  puts number_to_words(amount)
+  
