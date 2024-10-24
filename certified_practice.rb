@@ -99,3 +99,27 @@ puts "to_rメソッド 1/3などの有理数を扱うrationalクラスに変換"
 puts "1/3".to_r
 puts ('2/3').to_r
 
+#文字列の算術演算子
+a = "ru" + "by"
+puts a
+puts a*3
+#puts 3*a #左辺に数値がくるのはTypeerrorになる
+
+#末尾に連結する場合は、<<メソッドを使うことができる
+puts "<<メソッドは、「破壊的メソッド」である"
+a = "ru"
+puts a << "by"
+puts a
+
+
+#文字列の比較をしてみる 辞書順 アルファベット順
+p "a" < "b" #trueを返す
+p "z" < "b" #falseを返す
+p "AB" < "AB" #falseを返す
+p "AB" == "AB" #trueを返す
+p "abc" <=> "abc" #0を返す
+
+#文字数を参照するメソッド length / size
+p "abcde".length
+p "日本語".length
+p "アメリカ".size
