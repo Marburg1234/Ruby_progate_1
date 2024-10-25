@@ -178,4 +178,26 @@ sum = 0
 }
 puts sum
 
+puts "breakの例"
+i = 0
+names = ["Python", "Ruby", "SQL", "Javascript"]
+names.each do |name|
+    i += 1
+    if i == 3
+        break
+    end
+    p [i, name]
+end
+
+puts "nextの例"
+i = 0
+names = ["Python", "Ruby", "SQL", "Javascript"]
+names.each do |name|
+    i += 1
+    if i == 3
+        next
+    end
+    p [i, name]
+end
+puts "---nextを使うことで対象の条件が成立したときスキップして、次の繰り返し処理に移る"
 
