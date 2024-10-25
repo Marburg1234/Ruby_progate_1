@@ -72,4 +72,110 @@ puts "2つのオブジェクトのIDが同じか確かめる equal_メソッド"
 p a.equal?(b) #falseを返す
 p c.equal?(a) #trueを返す
 
+#繰り返し処理
+#timesメソッド 一定の回数だけ同じ処理をさせる
+puts "繰り返し処理 timesメソッド"
+3.times do 
+    puts "3回繰り返すよ"
+end
+
+#入力した値の数値分だけ繰り返しをさせることもできる
+puts "countに代入した数値分だけ繰り返すよ"
+$i = 1
+count = gets.to_i
+count.times do 
+    puts "#{$i} 入力した数値分だけ繰り返すよ"
+    $i += 1
+end
+
+puts "do |i|の形でローカル変数をtimesメソッドで定義できる"
+3.times do |i|
+    puts "#{i+1}回目の繰り返しです"
+end
+
+sum = 0
+for i in 1..5
+    sum = sum + i
+end
+puts sum
+
+from = 10
+to = 20
+sum = 0
+for i in from..to
+    sum = sum + i
+end
+puts sum
+
+#上で出てきた ..や...は範囲オブジェクトというオブジェクトを作る記号のこと
+
+names = ["Python", "Ruby", "SQL", "Javascript"]
+puts "---配列データをfor文を使って取り出す"
+for name in names do
+    puts name
+end
+
+puts "---配列データをeach文を使って取り出す"
+names.each do |name|
+    puts name
+end
+
+#while文　条件が成り立つtrueである限り繰り返し処理が実行される
+i = 1
+while i <= 10
+    puts i
+    i += 1
+end
+
+sum = 0
+i = 1
+while i <= 5
+    sum += i
+    i += 1
+end
+puts sum 
+
+sum = 0
+i = 1
+while sum < 50
+    sum += i
+    i += 1
+end
+puts sum
+
+
+#until文　while文⇔until文
+#until文は、trueになるまで処理を繰り返す falseである限り処理をする
+puts "---until文を使う"
+sum = 0
+i = 1
+until sum >= 50
+    sum += i
+    i += 1
+end
+puts sum
+
+puts "---while文に条件!をつけて、untilと同じ結果を得る"
+sum = 0
+i = 1
+while ! (sum >= 50)
+    sum += i
+    i += 1
+end
+puts sum
+
+puts "---eachを使って、1..5を足した合計を表示する"
+sum = 0
+(1..5).each do |i|
+    sum += i
+end 
+puts sum
+
+puts "---eachのもう1つの記述方法で試してみる"
+sum = 0
+(1..5).each {|i|
+    sum += i
+}
+puts sum
+
 
