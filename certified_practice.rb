@@ -29,8 +29,10 @@ end
 bar
 
 puts 1 + 2
-puts 3.class.superclass
-puts 1.2.class.superclass
+#継承元を確認するメソッド superclass classの後に.superclassをつけうことで確認ができる
+#integerとfloatは、Numericという数値を表現するクラスを継承している
+puts 3.class.superclass #Numericという継承元のクラスが出てくる
+puts 1.2.class.superclass #同上
 
 puts 1.+(2)
 
@@ -123,3 +125,4 @@ p "abc" <=> "abc" #0を返す
 p "abcde".length
 p "日本語".length
 p "アメリカ".size
+
