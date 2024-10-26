@@ -266,7 +266,7 @@ myloop do
     num *= 2
 end
 
-#複数の引数を不定量で使う (*変数名)を使う
+#引数の数が不定のメソッド (*変数名)を使う
 puts "*argsで不特定の数量の引数を設定できる"
 puts "pもしくはprintで出力すると配列で表示する"
 def foo(*args)
@@ -284,4 +284,51 @@ def foo2(a, *args, c)
 end
 p foo2(1,12)
 p foo2(1, 101, 102, 103, 500)
+
+#キーワード引数
+puts "---キーワード引数を使ってみよう"
+def area2(x:0, y:0, z:0)
+    xy = x * y
+    yz = y * z
+    zx = z * x
+    (xy + yz + zx) * 2
+end
+p area2(x:2, y:3, z:4) #キーワード:値で渡す
+p area2(x:2, z:3) #yを省略=デフォルト値を使う
+
+$i = 1
+def volume2(a:1 , b:1, c:1)
+   calc = a * b * c
+   p "#{$i}： #{calc} 結果は…"
+   $i += 1
+   if calc == 0
+    return "0です"
+   elsif calc % 15 == 0
+    return "FizzBuzz(5でも3でも割り切れるよ)"
+   elsif calc % 5 == 0
+    return "Fizz(5で割り切れるよ)"
+   elsif calc % 3 == 0
+    return "Buzz(3で割り切れる)"
+   else
+    return "Nothing(5と3どちらでも割り切れないよ)"
+   end
+end
+puts volume2(a:1, b:3, c:5)
+puts volume2(a:4, b:5)
+puts volume2(a:3, b:9)
+puts volume2(a:2, b:8, c:19)
+
+#定義に存在していないキーワード引数を受け取る場合には **argsを設定すると受け取れるようになる
+puts "---**argsを引数に設定すると、定義していないキーワードでも値を受け取れる(ハッシュ)"
+def meth(x: 0, y: 0, z:0, **args)
+    [x, y, z, args]
+end
+p meth(x:2, y:3, g:5, w:2)
+
+#通常の引数とキーワード引数を一緒に使うこともできる
+def meth(a, b, c: 1)
+    return a * b * c
+end
+p meth(2,2, c:2)
+
 
