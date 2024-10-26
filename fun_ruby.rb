@@ -201,3 +201,87 @@ names.each do |name|
 end
 puts "---nextを使うことで対象の条件が成立したときスキップして、次の繰り返し処理に移る"
 
+
+#メソッドの呼び出し
+puts "メソッドの呼び出し方"
+puts "オブジェクト.メソッド名(引数1, 引数2, …)"
+puts "この構文のオブジェクトはレシーバーともよばれる"
+puts "例 cat.size catはオブジェクトであり、レシーバーとも呼ばれる"
+
+#インスタンスメソッド
+puts "インスタンスメソッド"
+p 10.to_s
+p Time.now.to_s
+
+#クラスメソッド
+puts "クラスメソッド"
+p "Array.new" #新たな配列を作る
+p "File.open(some_file)" #新たなファイルオブジェクトを作る
+p Time.now #新たなTimeオブジェクトを作る
+
+#関数的メソッド
+print "関数的メソッド"
+print "hello!" #文字列を出力する
+#sleep(5) 指定された秒数の間処理を休止する
+puts "hello!"
+puts "Ruby"
+
+puts "putsとprintの違いは、文字列を表示した後に改行するかどうか"
+puts "printは改行しない 後続の処理も同じ行に表示される"
+puts "putsは改行してくれる 後続の処理は改行して表示される"
+
+puts "---クラスメソッドの記述方法 .ドット と :: コロンx2は同じこと"
+puts "例: Array.new / Array::new"
+
+#メソッドの定義
+def hello(name="Python") #(引数名= ~ )でデフォルトの値を設定できる
+    puts "Hello #{name}"
+end
+hello("Ruby") #メソッドを定義すれば、レシーバを省略して、関数的メソッドとして呼び出せる！
+hello
+
+#複数の引数 引数のデフォルト値は、右端から必ず埋めてあること
+def func(a=3, b=1, c=3) 
+    puts a + b + c
+end
+func
+func(1,1,1)
+
+def volume(x, y, z)
+    return x * y * z
+end
+puts volume(2,3,4)
+puts volume(10,20,30)
+
+def myloop
+    while true
+        yield #ブロックを実行する
+    end
+end
+
+num = 1
+myloop do 
+    puts "num is #{num}"
+    break if num > 10
+    num *= 2
+end
+
+#複数の引数を不定量で使う (*変数名)を使う
+puts "*argsで不特定の数量の引数を設定できる"
+puts "pもしくはprintで出力すると配列で表示する"
+def foo(*args)
+    args
+end
+p foo(1,2,3,4,5)
+
+def foo1(a, *args)
+    [a, args]
+end
+p foo1(12, 100, 101, 102)
+
+def foo2(a, *args, c)
+    [a, args, c]
+end
+p foo2(1,12)
+p foo2(1, 101, 102, 103, 500)
+
