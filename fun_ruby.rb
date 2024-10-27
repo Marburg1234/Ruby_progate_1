@@ -353,4 +353,63 @@ end
 args2 = [1, 2, 3]
 puts area2(*args2)
 
+#クラスとモジュール
+#クラス
+ary = Array.new
+p ary
+p ary.class
 
+#配列や文字列のような組み込みライブラリは、リテラル(文法に組み込まれた[1, 2, 3]やabcのような表記法は)
+#そのままオブジェクトを作ることができる
+
+puts "---どのクラスに属しているかを確認してみる classメソッド"
+ary = []
+str = "Hello"
+p ary.class #Arrayと表示される
+p str.class #Stringと表示される
+
+#対象のオブジェクトが指定したクラスのインスタンスかどうかを確認する instance_of?メソッド
+puts "---instance_of?メソッドを使って、クラスが正しいか確認してみよう"
+p ary.instance_of?(Array) #trueと表示
+p str.instance_of?(String) #trueと表示
+p str.instance_of?(Hash) #falseと表示
+
+number = 12
+puts "*------------"
+p number.instance_of?(Integer) #true
+p number.instance_of?(Numeric) #false
+p number.instance_of?(String) #false
+puts "継承関係をさかのぼってクラスに対象のオブジェクトが引数のクラスに属しているか確認する is_aメソッド"
+p number.is_a?(String) #false
+p number.is_a?(Object) #true
+
+#新しいクラスを作る
+class HelloWorld #クラス名は大文字で開始する
+    def initialize(myname = "Ruby") #initializeメソッド .newした時点で呼び出される特殊なメソッド
+      @name = myname
+    end
+    
+    def hello #インスタンスメソッド
+        puts "Hello, world. I am #{@name}"
+    end
+end
+
+bob = HelloWorld.new("Bob")
+Hiroshi = HelloWorld.new("Hiroshi")
+ruby = HelloWorld.new
+
+bob.hello
+Hiroshi.hello
+ruby.hello
+
+#アクセスメソッドを使って、定義する
+class HelloWorld #クラス名は大文字で開始する
+    attr_accessor :name
+    
+    def greet #インスタンスメソッド
+        puts "Good day. I am #{self.name}"
+    end
+end
+
+minji = HelloWorld.new("Minji")
+minji.greet
