@@ -413,3 +413,64 @@ end
 
 minji = HelloWorld.new("Minji")
 minji.greet
+
+#クラスメソッド
+puts "---クラスメソッドを定義してみよう class << self ~ end"
+class HelloClass
+    class << self
+        def hello(name)
+            puts "こんにちは！ #{name}さん！"
+        end
+    end
+end
+#クラスメソッドの呼び出し クラス名.メソッド名(引数)
+HelloClass.hello("西田")
+HelloClass.hello("近藤")
+
+#以下の記述方法でもクラスメソッドになる
+def HelloClass.hello(name)
+    puts "こんにちは、 #{name}さん！"
+end
+HelloClass.hello("山本")
+
+class HelloWorld
+    def self.hello(name) #クラス名をレシーバーとしてselfで受ける
+        puts "#{name} said Hello"
+    end
+end
+HelloWorld.hello("John")
+
+#定数 一度定義した値を更新しない
+class Computer
+    Version = "1.0"
+
+end
+puts Computer::Version
+
+#メソッドの使用制限をかける
+puts "メソッドの制限について学ぶ"
+puts "public 全公開・使用できる"
+puts "private 同じクラス/サブクラスで使用できる ただしレシーバーを入れるとNo method errorになる"
+puts "protected privateと同じ 違う点はレシーバーをつけて呼び出せる"
+
+class Person
+    def initialize(name, age)
+        @name = name
+        @age = age
+    end
+
+    def older_than?(other_person)
+        age > other_person.age #protectedメソッドをレシーバーをつけて使用
+    end
+
+    protected
+    def age
+        @age
+    end
+end
+
+alice = Person.new("Alice", 30)
+bob = Person.new("Bob", 25)
+
+puts alice.older_than?(bob) #trueを返す
+#puts alice.age #protectedメソッドをクラス外から呼んでいるのでNo method errorになる
