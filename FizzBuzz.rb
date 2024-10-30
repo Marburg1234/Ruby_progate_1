@@ -92,3 +92,22 @@ def number_to_words(number)
   amount = 200000
   puts number_to_words(amount)
   
+
+
+
+#FizzBuzz again
+puts "FizzBuzzゲーム"
+puts "好きな数字を入力して始めましょう： "
+number = gets.to_i
+
+if number == 0
+  puts "0でした 他の数値を入力してください"
+elsif number % 15 == 0
+  puts "FizzBuzz (3と5両方で割り切れます)"
+elsif number % 5 == 0
+  puts "Fizz(5で割り切れます)"
+elsif number % 3 == 0
+  puts "Buzz(3で割り切れます)"
+else
+  puts "None (5でも3でも割り切れません)"
+end
