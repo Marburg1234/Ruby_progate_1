@@ -37,30 +37,30 @@ end
 
 # 数値を英語に変換する関数
 def number_to_words(number)
-    # 英語の基本表現
-    ones = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
-            "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"]
-  
-    tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"]
-  
-    thousands = ["", "Thousand", "Million", "Billion", "Trillion"]
-  
-    return "Zero" if number == 0
-  
-    result = ""
-    thousand_count = 0
-  
-    while number > 0
-      # 3桁ごとに分割して変換
-      remainder = number % 1000
-      if remainder != 0
-        result = "#{convert_hundreds(remainder)} #{thousands[thousand_count]} #{result}".strip
-      end
-      number /= 1000
-      thousand_count += 1
+  # 英語の基本表現
+  ones = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
+          "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"]
+
+  tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"]
+
+  thousands = ["", "Thousand", "Million", "Billion", "Trillion"]
+
+  return "Zero" if number == 0
+
+  result = ""
+  thousand_count = 0
+
+  while number > 0
+    # 3桁ごとに分割して変換
+    remainder = number % 1000
+    if remainder != 0
+      result = "#{convert_hundreds(remainder)} #{thousands[thousand_count]} #{result}".strip
     end
-  
-    result
+    number /= 1000
+    thousand_count += 1
+  end
+
+  result
   end
   
   # 3桁の数値を変換する補助関数
@@ -87,27 +87,28 @@ def number_to_words(number)
   
     result.strip
   end
-  
-  # 使用例
-  amount = 200000
-  puts number_to_words(amount)
-  
 
-
+  
+# 使用例
+#amount = 200000
+#入力できるように変更してみる
+puts "好きな数字を入力してね。アルファベット表記になるよ！"
+amount = gets.to_i
+puts number_to_words(amount)
 
 #FizzBuzz again
-puts "FizzBuzzゲーム"
+puts "FizzBuzzゲーム 2"
 puts "好きな数字を入力して始めましょう： "
 number = gets.to_i
 
 if number == 0
   puts "0でした 他の数値を入力してください"
-elsif number % 15 == 0
-  puts "FizzBuzz (3と5両方で割り切れます)"
-elsif number % 5 == 0
-  puts "Fizz(5で割り切れます)"
+elsif number % 21 == 0
+  puts "FizzBuzz (7と3両方で割り切れます)"
+elsif number % 7 == 0
+  puts "Fizz(7で割り切れます)"
 elsif number % 3 == 0
   puts "Buzz(3で割り切れます)"
 else
-  puts "None (5でも3でも割り切れません)"
+  puts "None (7でも3でも割り切れません)"
 end
