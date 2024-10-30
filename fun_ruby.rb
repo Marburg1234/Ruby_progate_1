@@ -474,3 +474,52 @@ bob = Person.new("Bob", 25)
 
 puts alice.older_than?(bob) #trueを返す
 #puts alice.age #protectedメソッドをクラス外から呼んでいるのでNo method errorになる
+
+puts "---BasicObjectクラスが持つインスタンスメソッド"
+puts BasicObject.instance_methods
+puts "----"
+puts "---Objectクラスが持つインスタンスメソッド"
+puts Object.instance_methods
+puts "---"
+
+#alias すでに存在するメソッドの名前を変更する
+puts "aliasを使って、定義済みのメソッド名を変更する"
+puts "alias 別名 元の名 or alias :別名 :元の名 で記述する"
+
+class C1
+    def hello
+        "Hello"
+    end
+end
+
+class C2 < C1 #C1のクラスを継承したC2を作成
+    alias old_hello hello #helloメソッドを old_helloに変更
+
+    def hello #新たにhelloメソッドを定義
+        "#{old_hello} again" #処理を作成
+    end
+end
+greeting = C1.new #C1クラスを呼びだす
+p greeting.hello #Helloが出力される
+obj = C2.new
+p obj.old_hello #C2にあるold_helloを呼び出す 元の名前をたどると C1のhelloメソッドにたどり着く
+p obj.hello #C2にあるhelloメソッドを呼び出す
+
+puts "---undef(メソッドをサブクラスでは削除する機能)を使ってみよう"
+class Sport
+    def sport
+        "Football"
+    end
+end
+
+class Baseball < Sport
+    undef :sport
+
+    def like(name)
+        "#{name}がすごく人気です"
+    end
+end
+obj = Baseball.new
+p obj.like("野球")
+#p obj.sport #undefを入れてメソッド削除していると、undefined method でエラーになる
+
