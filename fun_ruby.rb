@@ -523,3 +523,31 @@ obj = Baseball.new
 p obj.like("野球")
 #p obj.sport #undefを入れてメソッド削除していると、undefined method でエラーになる
 
+
+
+#モジュールの使い方
+module MyModule
+    Number = 58
+
+    def greeting
+        p "Hello"
+    end
+    module_function :greeting
+end
+MyModule::greeting
+include MyModule
+greeting
+p Number
+
+module HelloModule
+    Version = "1.0"
+
+    def hello(name)
+        puts "Hello #{name}"
+    end
+    module_function :hello
+end
+include HelloModule
+p Version
+hello("Alice")
+
