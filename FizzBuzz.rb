@@ -112,3 +112,21 @@ elsif number % 3 == 0
 else
   puts "None (7でも3でも割り切れません)"
 end
+
+
+puts "FizzBuzzゲーム 3"
+puts "好きな数字を入力しよう"
+input_number = gets.to_i
+
+if input_number == 0
+  puts "0はエラーです"
+elsif input_number % 15 == 0
+  puts "FizzBuzz(3/5どちらでも割り切れる数字です)"
+elsif input_number % 5 == 0
+  puts "Fizz(5で割り切れる数字です)"
+elsif input_number % 3 == 0
+  puts "Buzz(3で割り切れる)"
+else 
+  puts "5と3どちらでも割り切れません、残念…"
+end
+

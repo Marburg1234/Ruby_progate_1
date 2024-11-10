@@ -534,10 +534,11 @@ module MyModule
     end
     module_function :greeting
 end
-MyModule::greeting
 include MyModule
-greeting
 p Number
+greeting #なぜかこれは呼び出されない module_functionを使ってもインスタンスメソッドにならないから？らしい(ChatGPT)
+MyModule.greeting #これであれば呼び出される includeをしたうえで、モジュール名.メソッド名をすると呼び出しができる！
+
 
 module HelloModule
     Version = "1.0"
