@@ -552,3 +552,30 @@ include HelloModule
 p Version
 hello("Alice")
 
+#範囲演算子
+#値の範囲を表すオブジェクトを生成してみる(1から10)
+Range.new(1, 10)
+puts "Ramge.new(1, 10)"
+puts "省略形 1..10"
+
+sum = 0
+
+#範囲演算子はすでに出ている 1..5として
+for i in 1..5
+    sum += i
+end
+puts sum
+
+puts "(5..10)→ 10を含む"
+p (5..10).to_a
+puts "(5...10)→ 10を含まない"
+p (5...10).to_a
+
+p ("a".."c").to_a
+p ("a"..."x").to_a
+
+str = "たのしいRuby"
+puts str.to_s
+p str.inspect
+
+
